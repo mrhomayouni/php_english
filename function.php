@@ -4,17 +4,17 @@ require "db.php";
 function question()
 {
     global $pdo;
-    $sql = "SELECT * FROM `question`";
+    $sql = "SELECT * FROM `questions`";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $question = $stmt->fetchAll();
+    $question = $stmt->fetch();
     return $question;
 }
 
 function word($question_id)
 {
     global $pdo;
-    $sql = "SELECT * FROM `word` WHERE `question_id`=:question_id ORDER BY rand()";
+    $sql = "SELECT * FROM `words` WHERE `question_id`=:question_id ORDER BY rand()";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue("question_id", $question_id);
     $stmt->execute();
@@ -25,7 +25,7 @@ function word($question_id)
 function get_word_by_id($id)
 {
     global $pdo;
-    $sql = "SELECT * FROM `word` WHERE `id`=:id";
+    $sql = "SELECT * FROM `words` WHERE `id`=:id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue("id", $id);
     $stmt->execute();
@@ -37,7 +37,7 @@ function get_word_by_id($id)
 function order_word($question_id)
 {
     global $pdo;
-    $sql = "SELECT * FROM `word` WHERE `question_id`=:question_id ORDER BY `order`";
+    $sql = "SELECT * FROM `words` WHERE `question_id`=:question_id ORDER BY `order`";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue("question_id", $question_id);
     $stmt->execute();
