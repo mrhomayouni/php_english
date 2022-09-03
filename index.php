@@ -8,11 +8,11 @@ if ($question_id !== null) {
     $flag0 = true;
     $words = get_words_by_rand($question_id);
     $flag2 = true;
-    if (isset($_POST["send"]) and is_array($_POST["answer"])) {
+    if (isset($_POST["send"]) and isset($_POST["answers"])) {
         $flag2 = false;
-        $answers = $_POST["answer"];
+        $answers = $_POST["answers"];
         $flag = 0;
-        if (isset($answers)) {
+        if (is_array($answers)) {
             foreach ($answers as $i => $answer_item) {
                 $a = get_word_by_id($i);
                 if (!($answer_item == $a["order"])) {
@@ -49,7 +49,7 @@ if ($question_id !== null) {
         <?php if (count($words) > 0) {
             foreach ($words as $item) { ?>
                 <label for=""><?= $item["text"] ?> </label>
-                <input type="number" name="answer[<?= $item["id"] ?>]"> <br> <br>
+                <input type="number" name="answers[<?= $item["id"] ?>]"> <br> <br>
             <?php } ?>
             <input type="hidden" name="x" value="<?= $question_id ?>">
             <input type="submit" value="send" name="send">

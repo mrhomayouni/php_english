@@ -1,7 +1,7 @@
 <?php
 require "db.php";
 
-function get_question_by_rand()
+function get_question_by_rand(): ?int
 {
     global $pdo;
 
@@ -14,7 +14,7 @@ function get_question_by_rand()
     return $result;
 }
 
-function get_words_by_rand($question_id)
+function get_words_by_rand($question_id): array
 {
     global $pdo;
 
@@ -27,7 +27,7 @@ function get_words_by_rand($question_id)
     return $question;
 }
 
-function get_word_by_id($id)
+function get_word_by_id($id): array
 {
     global $pdo;
 
@@ -40,7 +40,7 @@ function get_word_by_id($id)
     return $question;
 }
 
-function order_word($question_id)
+function order_word($question_id): array
 {
     global $pdo;
 
