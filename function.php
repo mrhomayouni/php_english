@@ -4,11 +4,14 @@ require "db.php";
 function question()
 {
     global $pdo;
-    $sql = "SELECT * FROM `questions`";
+
+    $sql = "SELECT `id` FROM `questions` ORDER BY RAND() LIMIT 1;";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $question = $stmt->fetch();
-    return $question;
+    $result = $stmt->fetchColumn();
+
+    if ($result === false) return null;
+    return $result;
 }
 
 function word($question_id)
