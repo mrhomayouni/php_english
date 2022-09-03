@@ -51,7 +51,7 @@ if ($question_id !== null) {
                 <label for=""><?= $item["text"] ?> </label>
                 <input type="number" name="answer[<?= $item["id"] ?>]"> <br> <br>
             <?php } ?>
-            <input type="hidden" name="x" value="<?= $rand ?>">
+            <input type="hidden" name="x" value="<?= $question_id ?>">
             <input type="submit" value="send" name="send">
             </form>
         <?php }
