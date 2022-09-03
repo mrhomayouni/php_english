@@ -47,9 +47,9 @@ if ($question_id !== null) {
     <?php if ($flag2 == true) { ?>
         <form action="" method="post">
         <?php if (count($words) > 0) {
-            foreach ($words as $item) { ?>
-                <label for=""><?= $item["text"] ?> </label>
-                <input type="number" name="answers[<?= $item["id"] ?>]"> <br> <br>
+            foreach ($words as $word_item) { ?>
+                <label for=""><?= $word_item["text"] ?> </label>
+                <input type="number" name="answers[<?= $word_item["id"] ?>]"> <br> <br>
             <?php } ?>
             <input type="hidden" name="x" value="<?= $question_id ?>">
             <input type="submit" value="send" name="send">
