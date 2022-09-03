@@ -1,7 +1,7 @@
 <?php
 require "db.php";
 
-function question()
+function get_question_by_rand()
 {
     global $pdo;
 
@@ -14,36 +14,41 @@ function question()
     return $result;
 }
 
-function word($question_id)
+function get_words_by_rand($question_id)
 {
     global $pdo;
-    $sql = "SELECT * FROM `words` WHERE `question_id`=:question_id ORDER BY rand()";
+
+    $sql = "SELECT * FROM `words` WHERE `question_id` = :question_id ORDER BY RAND();";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue("question_id", $question_id);
     $stmt->execute();
     $question = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     return $question;
 }
 
 function get_word_by_id($id)
 {
     global $pdo;
-    $sql = "SELECT * FROM `words` WHERE `id`=:id";
+
+    $sql = "SELECT * FROM `words` WHERE `id` = :id;";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue("id", $id);
     $stmt->execute();
     $question = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $question;
 
+    return $question;
 }
 
 function order_word($question_id)
 {
     global $pdo;
-    $sql = "SELECT * FROM `words` WHERE `question_id`=:question_id ORDER BY `order`";
+
+    $sql = "SELECT * FROM `words` WHERE `question_id` = :question_id ORDER BY `order`;";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue("question_id", $question_id);
     $stmt->execute();
     $question = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     return $question;
 }

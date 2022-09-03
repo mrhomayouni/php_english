@@ -1,12 +1,12 @@
 <?php
 require "function.php";
 
-$question_id = question();
+$question_id = get_question_by_rand();
 
 $flag0 = false;
 if ($question_id !== null) {
     $flag0 = true;
-    $words = word($question_id);
+    $words = get_words_by_rand($question_id);
     $flag2 = true;
     if (isset($_POST["send"]) and is_array($_POST["answer"])) {
         $flag2 = false;
@@ -22,10 +22,10 @@ if ($question_id !== null) {
             if ($flag > 0) {
                 $order_words = order_word($_POST["x"]);
                 echo "Your answer is wrong" . "<br>";
-                echo '<br><a href="">Try another question!</a>';
                 foreach ($order_words as $item) {
-                    echo $item["word"] . " ";
+                    echo $item["text"] . " ";
                 }
+                echo '<br><a href="">Try another question!</a>';
             } else {
                 echo "Your answer is correct<br>";
                 echo '<br><a href="">Try another question!</a>';
